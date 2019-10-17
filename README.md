@@ -17,7 +17,7 @@ Steps to setup scenario:
   - create services on SAP Cloud Platform:
     - cf create-service xsuaa application xsuaa-docServices -c xs-security.json
     - cf create-service application-logs lite applog-docServices
-  - replace "<<PUT IN YOUR SAP CP USER ID>>" in vars.yml with your SAP Cloud Platform user ID
+  - replace \<<PUT IN YOUR SAP CP USER ID\>> in vars.yml with your SAP Cloud Platform user ID
   - push application to SAP Cloud Platform using cf push --vars-file vars.yml
   - Navigate into folder rfcServices
   - Build application using mvn clean install
