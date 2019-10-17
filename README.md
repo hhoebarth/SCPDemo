@@ -32,7 +32,7 @@ Steps to setup scenario:
   - Add HTTP destination docServices to your Subaccount
     - Name: docServices
     - Type: HTTP
-    - URL: <<URL to your docServices application on SAP Cloud Platform>>
+    - URL: \<<URL to your docServices application on SAP Cloud Platform\>>
     - ProxyType: Internet
     - Authentication: AppToAppSSO
 
