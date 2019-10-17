@@ -1,0 +1,42 @@
+﻿---
+# Configuration:
+# configured for EU10. For other landscapes, please adopt LANDSCAPE_APPS_DOMAIN in ../vars.yml
+# If the route is occupied, you might need to change ID in ../vars.yml
+applications:
+# The RFC application.
+- name: rfcServices
+  instances: 1
+  memory: 896M
+  routes:
+    - route: rfcServices-((ID)).((LANDSCAPE_APPS_DOMAIN))
+  path: target/rfcServices.war
+  buildpacks:
+    - sap_java_buildpack
+  env:
+    SET_LOGGING_LEVEL: '{ROOT: INFO, com.sap.cloud.sdk: INFO}'
+    JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
+    TARGET_RUNTIME: tomee7
+  services:
+    - applog-rfcServices
+    - destination-rfcServices
+    - conn-xsuaa
+    - connectivity-rfcServices
+
+# Application Router as web server
+- name: approuter-rfcServices
+  path: approuter
+  buildpack: nodejs_buildpack
+  memory: 128M
+  routes:
+    - route: rfcServices-web-((ID)).((LANDSCAPE_APPS_DOMAIN))
+  services:
+    - conn-xsuaa
+  env:
+    destinations: >
+      [
+        {"name":"token-destination",
+         "url":"https://rfcServices-((ID)).((LANDSCAPE_APPS_DOMAIN))",
+         "forwardAuthToken": true,
+         "timeout":300000}
+      ]
+...

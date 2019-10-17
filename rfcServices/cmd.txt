@@ -1,0 +1,16 @@
+cf login https://api.cf.eu10.hana.ondemand.com
+
+cf create-service xsuaa application conn-xsuaa -c xs-security.json
+cf create-service destination lite destination-rfcServices
+cf create-service application-logs lite applog-rfcServices
+cf create-service connectivity lite connectivity-rfcServices
+
+cf delete -r rfcServices
+cf delete -r approuter-rfcServices
+
+cf push --vars-file vars.yml
+
+cf logs rfcServices --recent
+
+https://rfcservices-web-s0011783670.cfapps.eu10.hana.ondemand.com/v1/rfc/orderReport/12102495
+

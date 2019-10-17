@@ -1,0 +1,12 @@
+cf create-service xsuaa application xsuaa-docServices -c xs-security.json
+cf create-service application-logs lite applog-docServices
+
+cf delete -r docServices
+cf delete -r approuter-docServices
+
+cf push --vars-file vars.yml
+
+cf logs docServices --recent
+
+https://docxServices-web-s0011783670.cfapps.eu10.hana.ondemand.com/merge
+

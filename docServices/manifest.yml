@@ -1,0 +1,39 @@
+﻿---
+# Configuration:
+# configured for EU10. For other landscapes, please adopt LANDSCAPE_APPS_DOMAIN in ../vars.yml
+# If the route is occupied, you might need to change ID in ../vars.yml
+applications:
+# The RFC application.
+- name: docServices
+  instances: 1
+  memory: 896M
+  routes:
+    - route: docServices-((ID)).((LANDSCAPE_APPS_DOMAIN))
+  path: target/docServices.jar
+  buildpacks:
+    - sap_java_buildpack
+  env:
+    SET_LOGGING_LEVEL: '{ROOT: INFO, com.sap.cloud.sdk: INFO}'
+    TARGET_RUNTIME: main
+  services:
+    - applog-docServices
+    - xsuaa-docServices
+
+# Application Router as web server
+- name: approuter-docServices
+  path: approuter
+  buildpack: nodejs_buildpack
+  memory: 128M
+  routes:
+    - route: docServices-web-((ID)).((LANDSCAPE_APPS_DOMAIN))
+  services:
+    - xsuaa-docServices
+  env:
+    destinations: >
+      [
+        {"name":"token-destination",
+         "url":"https://docServices-((ID)).((LANDSCAPE_APPS_DOMAIN))",
+         "forwardAuthToken": true,
+         "timeout":300000}
+      ]
+...

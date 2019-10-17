@@ -1,0 +1,28 @@
+{
+    	"xsappname": "rfcServices",
+    	"tenant-mode": "dedicated",
+    	"scopes": [
+    		{
+      			"name": "$XSAPPNAME.Read",
+      			"description": "Read Permissions."
+    		}
+  	],
+  	"role-templates": [
+    		{
+      			"name": "rfcServices_Viewer",
+      			"description": "View Data",
+      			"scope-references": [
+        			"$XSAPPNAME.Read", "$XSAPPNAME(application,docServices).Read"
+      			]
+    		}
+  	],
+  	"role-collections": [
+    		{
+      			"name": "rfcServices_Viewer",
+      			"description": "Viewer (read)",
+      			"role-template-references": [
+        			"$XSAPPNAME.rfcServices_Viewer"
+      			]
+    		}
+  	]
+}  

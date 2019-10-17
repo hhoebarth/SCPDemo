@@ -1,0 +1,34 @@
+<mvc:View controllerName="de.javamagazin.rfcServices.controller.Home" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns="sap.m">
+	<Page id="orderDownloadPage" title="{i18n>home.Title}">
+		<content>
+            <f:SimpleForm 
+                editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3"
+				labelSpanL="3"
+				labelSpanM="3"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="4"
+				emptySpanL="4"
+				emptySpanM="4"
+				emptySpanS="0"
+				columnsXL="1"
+				columnsL="1"
+				columnsM="1">
+                <f:content>
+	                <Label text="{i18n>orderNumber}"/>
+	                <Input type="Text" maxLength="10" value="{/orderNumber}"/> 
+	            </f:content>     
+            </f:SimpleForm>
+    	</content>
+    	<footer>
+        <Bar>
+            <contentMiddle>
+                <Button id="btnSend" text="{i18n>send}" press="onSend" icon="sap-icon://add-activity-2"/>
+            </contentMiddle>
+        </Bar>
+    </footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,29 @@
+{
+    	"xsappname": "docServices",
+    	"tenant-mode": "dedicated",
+    	"scopes": [
+    		{
+      			"name": "$XSAPPNAME.Read",
+      			"description": "Read Permissions.",
+			"granted-apps": ["$XSAPPNAME(application, rfcServices)"]
+    		}
+  	],
+  	"role-templates": [
+    		{
+      			"name": "DocServices_Viewer",
+      			"description": "View Data",
+      			"scope-references": [
+        			"$XSAPPNAME.Read"
+      			]
+    		}
+  	],
+  	"role-collections": [
+    		{
+      			"name": "DocServices_Viewer",
+      			"description": "Viewer (read)",
+      			"role-template-references": [
+        			"$XSAPPNAME.DocServices_Viewer"
+      			]
+    		}
+  	]
+}  

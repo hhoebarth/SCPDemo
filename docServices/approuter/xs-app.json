@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "source": "^/",
+      "target": "/",
+      "destination": "token-destination",
+      "csrfProtection": false
+    }
+  ]
+}
