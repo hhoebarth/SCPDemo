@@ -29,12 +29,13 @@ Steps to setup scenario:
   - replace \<<PUT IN YOUR SAP CP USER ID\>> in vars.yml with your SAP Cloud Platform user ID
   - push application to SAP Cloud Platform using cf push --vars-file vars.yml
   - Logon to SAP Cloud Platform trial account in web browser
-  - Add HTTP destination docServices to your Subaccount
+  - Add HTTP destination docServices to your Subaccount https://help.sap.com/viewer/92204dcdf722491883c7819f66a70de8/latest/en-US/e08040a9cf664555957a419dc2df0e19.html
     - Name: docServices
     - Type: HTTP
     - URL: \<<URL to your docServices application on SAP Cloud Platform\>>
     - ProxyType: Internet
     - Authentication: AppToAppSSO
+  - Assign Role Collections DocServices_Viewer and rfcServices_Viewer to your user https://blogs.sap.com/2019/01/25/sap-cloud-platform-backend-service-tutorial-0.2-roles-configuration/
 
 If SAP ECC backend system is available:
   - Create Remote Function Z_PP_PRPP_GET_FILES with parameters
@@ -45,7 +46,7 @@ If SAP ECC backend system is available:
     This function module should export a Base64 encoded MS Word template (p.e. template.docx in rfcServices\src\main\webapp\WEB-INF) and a Base64 encoded xml data file (p.e. templateData.xml in rfcServices\src\main\webapp\WEB-INF). The files could be stored in the MIME repository and loaded from there using class CL_MIME_REPOSITORY. Base64 encoding could be done by using function module SSFC_BASE64_ENCODE.
   - Download/Install/Configure SAP Cloud Connector and connect to your Subaccount on SAP Cloud Platform and to SAP ECC backend https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/
   - Logon to SAP Cloud Platform trial account in web browser
-  - Add RFC destination docServices to your Subaccount
+  - Add RFC destination docServices to your Subaccount https://help.sap.com/viewer/92204dcdf722491883c7819f66a70de8/latest/en-US/e08040a9cf664555957a419dc2df0e19.html
     - Name: virtual host name of SAP ECC backend created in the last step
     - Type: RFC
     - User: User in SAP ECC backend
